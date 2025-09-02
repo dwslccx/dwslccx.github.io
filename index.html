@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity Test Website</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Custom styles for the Inter font and basic body setup */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        /* Hide all page content initially */
+        .page-content {
+            display: none;
+        }
+        /* Show the active page */
+        .page-content.active {
+            display: block;
+        }
+        /* Hide question steps by default */
+        .question-step {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex flex-col items-center p-4 md:p-8 bg-gray-100">
+        <!-- Header and Navigation -->
+        <header class="w-full max-w-4xl bg-white shadow-lg rounded-xl p-6 mb-8">
+            <h1 class="text-3xl font-bold text-center text-gray-700 mb-4">Clarity Test Site</h1>
+            <nav class="flex flex-wrap justify-center gap-4">
+                <a href="#home" class="nav-link bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">Home</a>
+                <a href="#forms" class="nav-link bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">Forms</a>
+                <a href="#charts" class="nav-link bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">Charts</a>
+                <a href="#downloads" class="nav-link bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">Downloads</a>
+                <a href="#dynamic" class="nav-link bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">Dynamic Content</a>
+                <a href="#questions" class="nav-link bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">Questions</a>
+                <a href="#sensitive" class="nav-link bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">Sensitive Data Test</a>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="w-full max-w-4xl bg-white shadow-lg rounded-xl p-6">
+            <!-- Home Page -->
+            <section id="home-page" class="page-content active">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Welcome to the Clarity Test Site</h2>
+                <p class="text-gray-700 mb-4">
+                    This website is designed to help you test various features of Microsoft Clarity analytics.
+                    Navigate through the different sections using the links above to interact with common web elements.
+                </p>
+                <div class="mb-4">
+                    <h3 class="text-xl font-medium text-gray-700 mb-2">External Link Example</h3>
+                    <a href="https://www.microsoft.com/en-us/clarity" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline transition duration-300">
+                        Visit Microsoft Clarity Homepage (External)
+                    </a>
+                </div>
+                <div>
+                    <h3 class="text-xl font-medium text-gray-700 mb-2">Internal Link Example</h3>
+                    <p class="text-gray-700">
+                        Check out the <a href="#forms" class="nav-link text-blue-600 hover:text-blue-800 underline transition duration-300">Forms Page</a> to see input fields and radio buttons in action.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Forms Page -->
+            <section id="forms-page" class="page-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Forms and Inputs</h2>
+                <p class="text-gray-700 mb-4">
+                    This section contains various form elements to test user interaction and data capture.
+                </p>
+                <form id="test-form" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-gray-700 font-medium mb-1">Your Name:</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 font-medium mb-1">Your Email:</label>
+                        <input type="email" id="email" name="email" placeholder="john.doe@example.com" class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Favorite Color:</label>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="color" value="red" class="form-radio text-red-500 h-4 w-4">
+                                <span class="ml-2 text-gray-700">Red</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="color" value="blue" class="form-radio text-blue-500 h-4 w-4">
+                                <span class="ml-2 text-gray-700">Blue</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="color" value="green" class="form-radio text-green-500 h-4 w-4">
+                                <span class="ml-2 text-gray-700">Green</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 font-medium mb-1">Your Message:</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Enter your message here..." class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md">
+                        Submit Form
+                    </button>
+                    <p id="form-message" class="text-green-600 mt-2 hidden">Form submitted successfully (dummy action)!</p>
+                </form>
+            </section>
+
+             <!-- Questions Page -->
+            <section id="questions-page" class="page-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Questionnaire</h2>
+                <div id="question-container">
+                    <form id="multi-step-form">
+                        <!-- Question 1: Radio Buttons -->
+                        <div class="question-step" data-step="1">
+                            <h3 class="text-xl font-medium text-gray-700 mb-3">What is your favorite season?</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="season" value="Spring" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="ml-3 text-gray-700">Spring</span>
+                                </label>
+                                <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="season" value="Summer" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="ml-3 text-gray-700">Summer</span>
+                                </label>
+                                <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="season" value="Autumn" class="form-radio h-5 w-5 text-blue-600">
+                                    <span class="ml-3 text-gray-700">Autumn</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 2: Checkboxes -->
+                        <div class="question-step" data-step="2">
+                            <h3 class="text-xl font-medium text-gray-700 mb-3">Which of these foods do you like? (Select all that apply)</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="checkbox" name="food" value="Pizza" class="form-checkbox h-5 w-5 text-green-600 rounded">
+                                    <span class="ml-3 text-gray-700">Pizza</span>
+                                </label>
+                                <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="checkbox" name="food" value="Sushi" class="form-checkbox h-5 w-5 text-green-600 rounded">
+                                    <span class="ml-3 text-gray-700">Sushi</span>
+                                </label>
+                                <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="checkbox" name="food" value="Tacos" class="form-checkbox h-5 w-5 text-green-600 rounded">
+                                    <span class="ml-3 text-gray-700">Tacos</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 3: Dropdown -->
+                        <div class="question-step" data-step="3">
+                            <h3 class="text-xl font-medium text-gray-700 mb-3">What is your preferred mode of transport?</h3>
+                            <select name="transport" class="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Car">Car</option>
+                                <option value="Bicycle">Bicycle</option>
+                                <option value="Public Transit">Public Transit</option>
+                            </select>
+                        </div>
+                    </form>
+                    <!-- Navigation Buttons -->
+                    <div id="navigation-buttons" class="mt-6 flex justify-between">
+                        <button id="back-btn" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md">Back</button>
+                        <button id="next-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md">Next</button>
+                        <button id="submit-questions-btn" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md hidden">Submit</button>
+                    </div>
+                </div>
+
+                <!-- Results Display -->
+                <div id="results-container" class="hidden mt-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your Selections</h2>
+                    <div class="p-4 bg-gray-100 rounded-lg space-y-2">
+                        <p><strong>Favorite Season:</strong> <span id="result-season"></span></p>
+                        <p><strong>Liked Foods:</strong> <span id="result-food"></span></p>
+                        <p><strong>Preferred Transport:</strong> <span id="result-transport"></span></p>
+                    </div>
+                     <button id="reset-questions-btn" class="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md">Start Over</button>
+                </div>
+            </section>
+
+
+            <!-- Charts Page -->
+            <section id="charts-page" class="page-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Charts and Graphs</h2>
+                <p class="text-gray-700 mb-4">
+                    This section displays a sample chart generated with dummy data to test analytics capabilities.
+                </p>
+                <div class="w-full bg-gray-50 p-4 rounded-lg shadow-inner">
+                    <canvas id="myBarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Downloads Page -->
+            <section id="downloads-page" class="page-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">File Downloads</h2>
+                <p class="text-gray-700 mb-4">
+                    Test tracking of file downloads. Clicking these links will initiate a download.
+                </p>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Dummy Text File</h3>
+                        <button id="download-text-btn" class="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md">
+                            Download Sample Text File
+                        </button>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-medium text-gray-700 mb-2">Dummy PDF Link</h3>
+                        <a href="https://www.africau.edu/images/default/sample.pdf" download="sample_document.pdf" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg inline-block transition duration-300 shadow-md">
+                            Download Sample PDF (External Link)
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dynamic Content Page -->
+            <section id="dynamic-page" class="page-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Dynamic Content and Interactions</h2>
+                <p class="text-gray-700 mb-4">
+                    Observe how Clarity tracks interactions with dynamically added content and hover effects.
+                </p>
+                <div class="mb-6">
+                    <h3 class="text-xl font-medium text-gray-700 mb-2">Add Content Dynamically</h3>
+                    <button id="add-content-btn" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md">
+                        Add More Text
+                    </button>
+                    <div id="dynamic-content-area" class="mt-4 p-4 border border-dashed border-gray-300 rounded-md bg-gray-50 text-gray-700">
+                        This is the initial dynamic content area.
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-medium text-gray-700 mb-2">Hover Effect Example</h3>
+                    <div id="hover-box" class="w-48 h-24 bg-yellow-300 flex items-center justify-center rounded-lg shadow-md transition-all duration-300 cursor-pointer hover:bg-yellow-400">
+                        <span class="text-gray-800 font-semibold">Hover Over Me!</span>
+                    </div>
+                    <p id="hover-message" class="text-sm text-gray-600 mt-2 opacity-0 transition-opacity duration-300">You hovered over the box!</p>
+                </div>
+            </section>
+
+            <!-- Sensitive Data Page -->
+            <section id="sensitive-page" class="page-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Sensitive Data Masking Test</h2>
+                <p class="text-gray-700 mb-4">
+                    This page contains dummy sensitive information. Verify in Microsoft Clarity that these fields are automatically masked in recordings and heatmaps.
+                    Please note: This is dummy data and should not be real PII.
+                </p>
+                <form class="space-y-4 p-4 border border-red-300 rounded-md bg-red-50">
+                    <p class="text-red-700 font-semibold text-lg">Dummy Sensitive Information (for testing masking)</p>
+
+                    <div>
+                        <label for="sensitive-name" class="block text-gray-700 font-medium mb-1">Full Name:</label>
+                        <input type="text" id="sensitive-name" name="sensitive-name" value="Test User Smith" class="w-full p-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                    </div>
+                    <div>
+                        <label for="sensitive-email" class="block text-gray-700 font-medium mb-1">Email Address:</label>
+                        <input type="email" id="sensitive-email" name="sensitive-email" value="test.user.smith@example.com" class="w-full p-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                    </div>
+                    <div>
+                        <label for="sensitive-phone" class="block text-gray-700 font-medium mb-1">Phone Number:</label>
+                        <input type="tel" id="sensitive-phone" name="sensitive-phone" value="01234 123456" class="w-full p-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                    </div>
+                    <div>
+                        <label for="sensitive-credit-card" class="block text-gray-700 font-medium mb-1">Credit Card Number (Dummy):</label>
+                        <input type="text" id="sensitive-credit-card" name="sensitive-credit-card" value="4111 2222 3333 4444" class="w-full p-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                        <p class="text-sm text-gray-500 mt-1">This is a dummy number for testing purposes.</p>
+                    </div>
+                    <div>
+                        <label for="sensitive-ssn" class="block text-gray-700 font-medium mb-1">National Insurance Number (Dummy):</label>
+                        <input type="text" id="sensitive-ssn" name="sensitive-ssn" value="XJ 18 93 94 C" class="w-full p-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                        <p class="text-sm text-gray-500 mt-1">This is a dummy number for testing purposes.</p>
+                    </div>
+                    <div>
+                        <label for="sensitive-address" class="block text-gray-700 font-medium mb-1">Street Address:</label>
+                        <input type="text" id="sensitive-address" name="sensitive-address" value="123 Test Street, Testville" class="w-full p-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                    </div>
+                     <div>
+                        <label for="sensitive-password" class="block text-gray-700 font-medium mb-1">Password Input:</label>
+                        <input type="password" id="sensitive-password" name="sensitive-password" value="secretpassword123" class="w-full p-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                        <p class="text-sm text-gray-500 mt-1">Input type "password" usually has strong masking by default.</p>
+                    </div>
+                    <div>
+                        <label for="sensitive-comments" class="block text-gray-700 font-medium mb-1">Sensitive Comments:</label>
+                        <textarea id="sensitive-comments" name="sensitive-comments" rows="3" class="w-full p-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                            This text area might contain sensitive medical information or financial details.
+                            For example: My balance is £12,345.67. Account: 123456789.
+                        </textarea>
+                    </div>
+                     <div>
+                        <label for="sensitive-hidden" class="block text-gray-700 font-medium mb-1">Hidden Field:</label>
+                        <input type="hidden" id="sensitive-hidden" name="sensitive-hidden" value="hidden_value_12345">
+                        <p class="text-sm text-gray-500 mt-1">A hidden input field. Clarity might still capture its value if not explicitly masked.</p>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full max-w-4xl bg-white shadow-lg rounded-xl p-4 mt-8 text-center text-gray-600 text-sm">
+            &copy; 2025 Clarity Test Site. All rights reserved. For testing purposes only. Eat more 🍰
+            <!-- Placeholder for Microsoft Clarity Tracking Code -->
+            <!--
+            <script type="text/javascript">
+                (function(c,l,a,r,i,t,y){
+                    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                })(window, document, "clarity", "script", "YOUR_CLARITY_PROJECT_ID");
+            </script>
+            -->
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Page Navigation Logic ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page-content');
+
+            const showPage = (id) => {
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                const targetPage = document.getElementById(id + '-page');
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    if (id === 'charts') {
+                        renderChart();
+                    } else if (id === 'questions') {
+                        resetQuestionnaire();
+                    }
+                }
+            };
+
+            const initialHash = window.location.hash.substring(1);
+            if (initialHash && document.getElementById(initialHash + '-page')) {
+                showPage(initialHash);
+            } else {
+                showPage('home');
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const targetId = event.target.getAttribute('href').substring(1);
+                    showPage(targetId);
+                    window.location.hash = targetId;
+                });
+            });
+
+            // --- Forms Page Logic ---
+            const testForm = document.getElementById('test-form');
+            const formMessage = document.getElementById('form-message');
+
+            if (testForm) {
+                testForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    console.log('Form submitted (dummy action)!');
+                    formMessage.classList.remove('hidden');
+                    setTimeout(() => {
+                        formMessage.classList.add('hidden');
+                        testForm.reset();
+                    }, 3000);
+                });
+            }
+            
+            // --- Questions Page Logic ---
+            const questionSteps = document.querySelectorAll('.question-step');
+            const backBtn = document.getElementById('back-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-questions-btn');
+            const resetBtn = document.getElementById('reset-questions-btn');
+            const questionContainer = document.getElementById('question-container');
+            const resultsContainer = document.getElementById('results-container');
+            const form = document.getElementById('multi-step-form');
+
+            let currentStep = 1;
+            const totalSteps = questionSteps.length;
+
+            const showStep = (step) => {
+                questionSteps.forEach(s => s.style.display = 'none');
+                const currentQuestion = document.querySelector(`.question-step[data-step="${step}"]`);
+                if (currentQuestion) {
+                    currentQuestion.style.display = 'block';
+                }
+
+                backBtn.classList.toggle('hidden', step === 1);
+                nextBtn.classList.toggle('hidden', step === totalSteps);
+                submitBtn.classList.toggle('hidden', step !== totalSteps);
+            };
+
+            const resetQuestionnaire = () => {
+                currentStep = 1;
+                showStep(currentStep);
+                questionContainer.classList.remove('hidden');
+                document.getElementById('navigation-buttons').classList.remove('hidden');
+                resultsContainer.classList.add('hidden');
+                form.reset();
+            };
+            
+            if (questionSteps.length > 0) {
+                 resetQuestionnaire(); // Initial setup
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    if (currentStep < totalSteps) {
+                        currentStep++;
+                        showStep(currentStep);
+                    }
+                });
+            }
+
+            if (backBtn) {
+                backBtn.addEventListener('click', () => {
+                    if (currentStep > 1) {
+                        currentStep--;
+                        showStep(currentStep);
+                    }
+                });
+            }
+
+            if (submitBtn) {
+                submitBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+
+                    // Process radio button
+                    const season = formData.get('season') || 'Not answered';
+                    document.getElementById('result-season').textContent = season;
+
+                    // Process checkboxes
+                    const foods = formData.getAll('food');
+                    document.getElementById('result-food').textContent = foods.length > 0 ? foods.join(', ') : 'None selected';
+                    
+                    // Process dropdown
+                    const transport = formData.get('transport') || 'Not answered';
+                    document.getElementById('result-transport').textContent = transport;
+
+                    questionContainer.classList.add('hidden');
+                    document.getElementById('navigation-buttons').classList.add('hidden');
+                    resultsContainer.classList.remove('hidden');
+                });
+            }
+            
+            if (resetBtn) {
+                resetBtn.addEventListener('click', resetQuestionnaire);
+            }
+
+            // --- Charts Page Logic ---
+            let myChartInstance = null;
+
+            const renderChart = () => {
+                const ctx = document.getElementById('myBarChart');
+                if (ctx) {
+                    if (myChartInstance) {
+                        myChartInstance.destroy();
+                    }
+                    myChartInstance = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                            datasets: [{
+                                label: 'Monthly Sales',
+                                data: [65, 59, 80, 81, 56, 75],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(75, 192, 192, 0.6)',
+                                    'rgba(153, 102, 255, 0.6)',
+                                    'rgba(255, 159, 64, 0.6)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: { y: { beginAtZero: true } },
+                            plugins: { title: { display: true, text: 'Dummy Sales Data Bar Chart' } }
+                        }
+                    });
+                }
+            };
+
+            // --- Downloads Page Logic ---
+            const downloadTextBtn = document.getElementById('download-text-btn');
+            if (downloadTextBtn) {
+                downloadTextBtn.addEventListener('click', () => {
+                    const textContent = "This is a dummy text file for download testing.\n\n" +
+                                        "You can use this to verify if Microsoft Clarity tracks file download clicks.";
+                    const blob = new Blob([textContent], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'clarity_test_file.txt';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            }
+
+            // --- Dynamic Content Page Logic ---
+            const addContentBtn = document.getElementById('add-content-btn');
+            const dynamicContentArea = document.getElementById('dynamic-content-area');
+            let contentCount = 0;
+
+            if (addContentBtn && dynamicContentArea) {
+                addContentBtn.addEventListener('click', () => {
+                    contentCount++;
+                    const newParagraph = document.createElement('p');
+                    newParagraph.className = 'mt-2 text-gray-600';
+                    newParagraph.textContent = `This is dynamically added content #${contentCount}. It should be tracked by Clarity.`;
+                    dynamicContentArea.appendChild(newParagraph);
+                });
+            }
+
+            const hoverBox = document.getElementById('hover-box');
+            const hoverMessage = document.getElementById('hover-message');
+
+            if (hoverBox && hoverMessage) {
+                hoverBox.addEventListener('mouseenter', () => {
+                    hoverMessage.classList.remove('opacity-0');
+                    hoverMessage.classList.add('opacity-100');
+                });
+
+                hoverBox.addEventListener('mouseleave', () => {
+                    hoverMessage.classList.remove('opacity-100');
+                    hoverMessage.classList.add('opacity-0');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
